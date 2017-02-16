@@ -1,0 +1,38 @@
+---
+alertmanager_version: 0.4.2
+alertmanager_user: prometheus
+alertmanager_group: prometheus
+
+# start on boot
+alertmanager_service_enabled: True
+# current state: started, stopped
+alertmanager_service_state: started
+
+alertmanager_log_file: "alertmanager.log"
+
+alertmanager_root_dir: /opt/alertmanager
+alertmanager_bin_dir: "{{ alertmanager_root_dir }}/bin"
+alertmanager_conf_dir: "/etc/alertmanager/conf.d"
+alertmanager_data_dir: "{{ alertmanager_root_dir }}/data"
+alertmanager_log_dir: "/var/log/alertmanager"
+
+alertmanager_service_options:
+  - "config.file=/etc/alertmanager/alertmanager.yml"
+  - "storage.path={{ alertmanager_data_dir }}"
+
+alertmanager_global_config_parameters:  |+2
+
+alertmanager_routes_config: |+2
+    group_by: ['alertname']
+    group_wait: 10s
+    group_interval: 10s
+    repeat_interval: 1h
+    receiver: 'webhook'
+alertmanager_inhibit_rules_config: |+2
+
+alertmanager_receivers_config: |+2
+  - name: 'webhook'
+    webhook_configs:
+    - url: 'http://127.0.0.1:5001/'
+
+alertmanager_force_reinstall: false

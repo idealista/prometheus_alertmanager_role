@@ -1,0 +1,8 @@
+---
+
+- name: ALERTMANAGER | Configuring service
+  systemd:
+    name: alertmanager
+    state: "{{ alertmanager_service_state }}"
+    enabled: "{{ alertmanager_service_enabled }}"
+    daemon_reload: yes

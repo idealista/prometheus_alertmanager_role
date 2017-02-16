@@ -1,0 +1,14 @@
+{{ alertmanager_log_dir }}/{{ alertmanager_log_file }} {
+  daily
+  sharedscripts
+  notifempty
+  missingok
+  rotate 7
+  size 500M
+  compress
+  delaycompress
+  create 664 {{ alertmanager_user }} {{ alertmanager_group }}
+  postrotate
+        [ ! -f /var/run/alertmanager.pid ] || systemd restart alertmanager.service
+  endscript
+}

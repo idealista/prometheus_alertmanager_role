@@ -1,0 +1,14 @@
+global:
+{{ alertmanager_global_config_parameters }}
+
+templates:
+  - '{{ alertmanager_conf_dir }}/*.tmpl'
+
+route:
+{{ alertmanager_routes_config }}
+
+inhibit_rules:
+{{ alertmanager_inhibit_rules_config }}
+
+receivers:
+{{ alertmanager_receivers_config }}

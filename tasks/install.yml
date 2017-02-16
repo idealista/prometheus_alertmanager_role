@@ -1,0 +1,65 @@
+---
+
+- name: ALERTMANAGER | Ensure alertmanager group
+  group:
+    name: "{{ alertmanager_group }}"
+
+- name: ALERTMANAGER | Ensure alertmanager user
+  user:
+    name: "{{ alertmanager_user }}"
+    group: "{{ alertmanager_group }}"
+    home: /bin/false
+
+- name: ALERTMANAGER | Ensure skeleton dir
+  file:
+    dest: "{{ item }}"
+    owner: "{{ alertmanager_user }}"
+    group: "{{ alertmanager_user }}"
+    state: directory
+  with_items:
+    - "{{ alertmanager_root_dir }}"
+    - "{{ alertmanager_conf_dir }}"
+    - "{{ alertmanager_bin_dir }}"
+    - "{{ alertmanager_log_dir }}"
+
+- name: ALERTMANAGER | Check alertmanager version
+  command: alertmanager -version
+  register: alertmanager_check
+  changed_when: false
+  ignore_errors: true
+
+- name: ALERTMANAGER | Download package
+  get_url:
+    url: "{{ alertmanager_url }}"
+    dest: /tmp
+  when: 'alertmanager_force_reinstall or alertmanager_check|failed or "alertmanager, version {{ alertmanager_version }}" not in alertmanager_check.stderr'
+
+- name: ALERTMANAGER | Extract package
+  unarchive:
+    copy: no
+    src: "/tmp/{{ alertmanager_package }}"
+    dest: /tmp
+  when: 'alertmanager_force_reinstall or alertmanager_check|failed or "alertmanager, version {{ alertmanager_version }}" not in alertmanager_check.stderr'
+
+- name: ALERTMANAGER | Copy binary
+  copy:
+    src: "/tmp/alertmanager-{{ alertmanager_version }}.linux-amd64/alertmanager"
+    dest: "{{ alertmanager_bin_dir }}/alertmanager"
+    owner: "{{ alertmanager_user }}"
+    group: "{{ alertmanager_group }}"
+    remote_src: True
+    mode: 0755
+  when: 'alertmanager_force_reinstall or alertmanager_check|failed or "alertmanager, version {{ alertmanager_version }}" not in alertmanager_check.stderr'
+
+- name: ALERTMANAGER | Link binary
+  file:
+    src: "{{ alertmanager_bin_dir }}/alertmanager"
+    dest: "/usr/bin/alertmanager"
+    state: link
+
+- name: ALERTMANAGER | Copy Daemon script
+  template:
+    src: alertmanager.service.j2
+    dest: /lib/systemd/system/alertmanager.service
+    mode: 0644
+  notify: restart alertmanager

@@ -1,0 +1,20 @@
+---
+
+- name: ALERTMANAGER | Copy server config
+  template:
+    src: "{{ item }}.j2"
+    dest: "/{{ item }}"
+    owner: "{{ alertmanager_user }}"
+    group: "{{ alertmanager_group }}"
+    mode: "0640"
+  notify: restart alertmanager
+  with_items:
+    - "etc/alertmanager/alertmanager.yml"
+
+- name: ALERTMANAGER | Copy logrotate config
+  template:
+    src: logrotate.j2
+    dest: /etc/logrotate.d/alertmanager
+    mode: 0644
+    owner: root
+    group: root
