@@ -1,15 +1,66 @@
 ---
 
-- name: ALERTMANAGER | Copy server config
+- name: ALERTMANAGER | Copy server config (global)
   template:
     src: "{{ item }}.j2"
-    dest: "/{{ item }}"
+    dest: "{{alertmanager_conf_path}}/parts/{{ item }}"
     owner: "{{ alertmanager_user }}"
     group: "{{ alertmanager_group }}"
-    mode: "0640"
-  notify: restart alertmanager
+    mode: 0640
   with_items:
-    - "etc/alertmanager/alertmanager.yml"
+    - "1_global_alertmanager"
+
+- name: ALERTMANAGER | Copy server config (other parts)
+  copy:
+    src: "{{ item }}"
+    dest: "{{alertmanager_conf_path}}/parts/{{ item | basename }}"
+    owner: "{{ alertmanager_user }}"
+    group: "{{ alertmanager_group }}"
+    mode: 0640
+  with_fileglob:
+    - "{{ alertmanager_config_parts_path }}/*"
+
+- name: ALERTMANAGER | Checking for parts...
+  find:
+    paths: "{{alertmanager_conf_path}}/parts"
+  register: check_parts
+
+- name: ALERTMANAGER | Copy default parts
+  copy:
+    src: "{{ item }}"
+    dest: "{{alertmanager_conf_path}}/parts/{{ item }}"
+    owner: "{{ alertmanager_user }}"
+    group: "{{ alertmanager_group }}"
+    mode: 0640
+  with_items:
+    - 2_routes_alertmanager
+    - 3_inhibit_rules_alertmanager
+    - 4_receivers_alertmanager
+  when: check_parts.files <= 1
+
+- name: ALERTMANAGER | Join config parts
+  assemble:
+    remote_src: true
+    src: "{{ alertmanager_conf_path }}/parts"
+    dest: "{{ alertmanager_conf_path }}/alertmanager.yml"
+    owner: "{{ alertmanager_user }}"
+    group: "{{ alertmanager_group }}"
+    mode: 0640
+    delimiter: '\n'
+  notify:
+    - restart alertmanager
+
+- name: ALERTMANAGER | Copy templates
+  copy:
+    src: "{{ item }}"
+    dest: "{{ alertmanager_templates_path }}/{{ item }}"
+    owner: "{{ alertmanager_user }}"
+    group: "{{ alertmanager_group }}"
+    mode: 0640
+  with_fileglob:
+    - "{{ alertmanager_config_templates_path }}/*"
+  notify:
+    - reload alertmanager
 
 - name: ALERTMANAGER | Copy logrotate config
   template:

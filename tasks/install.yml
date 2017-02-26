@@ -3,24 +3,30 @@
 - name: ALERTMANAGER | Ensure alertmanager group
   group:
     name: "{{ alertmanager_group }}"
+    system: yes
+    state: present
 
 - name: ALERTMANAGER | Ensure alertmanager user
   user:
     name: "{{ alertmanager_user }}"
     group: "{{ alertmanager_group }}"
-    home: /bin/false
+    system: yes
+    shell: /sbin/nologin
+    createhome: no
 
-- name: ALERTMANAGER | Ensure skeleton dir
+- name: ALERTMANAGER | Ensure skeleton paths
   file:
     dest: "{{ item }}"
     owner: "{{ alertmanager_user }}"
     group: "{{ alertmanager_user }}"
     state: directory
   with_items:
-    - "{{ alertmanager_root_dir }}"
-    - "{{ alertmanager_conf_dir }}"
-    - "{{ alertmanager_bin_dir }}"
-    - "{{ alertmanager_log_dir }}"
+    - "{{ alertmanager_root_path }}"
+    - "{{ alertmanager_conf_path }}"
+    - "{{ alertmanager_conf_path }}/parts"
+    - "{{ alertmanager_templates_path }}"
+    - "{{ alertmanager_bin_path }}"
+    - "{{ alertmanager_log_path }}"
 
 - name: ALERTMANAGER | Check alertmanager version
   command: alertmanager -version
@@ -43,17 +49,18 @@
 
 - name: ALERTMANAGER | Copy binary
   copy:
-    src: "/tmp/alertmanager-{{ alertmanager_version }}.linux-amd64/alertmanager"
-    dest: "{{ alertmanager_bin_dir }}/alertmanager"
+    src: "/tmp/{{ alertmanager_release_name }}/alertmanager"
+    dest: "{{ alertmanager_bin_path }}/alertmanager"
     owner: "{{ alertmanager_user }}"
     group: "{{ alertmanager_group }}"
     remote_src: True
     mode: 0755
   when: 'alertmanager_force_reinstall or alertmanager_check|failed or "alertmanager, version {{ alertmanager_version }}" not in alertmanager_check.stderr'
+  notify: restart alertmanager
 
 - name: ALERTMANAGER | Link binary
   file:
-    src: "{{ alertmanager_bin_dir }}/alertmanager"
+    src: "{{ alertmanager_bin_path }}/alertmanager"
     dest: "/usr/bin/alertmanager"
     state: link
 
