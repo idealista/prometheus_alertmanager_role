@@ -1,2 +1,4 @@
-alertmanager_package: "alertmanager-{{ alertmanager_version }}.linux-amd64.tar.gz"
+
+alertmanager_release_name: "alertmanager-{{ alertmanager_version }}.{{ alertmanager_release_system }}"
+alertmanager_package: "alertmanager-{{ alertmanager_version }}.{{ alertmanager_release_system }}.tar.gz"
 alertmanager_url: "https://github.com/prometheus/alertmanager/releases/download/v{{ alertmanager_version }}/{{ alertmanager_package }}"

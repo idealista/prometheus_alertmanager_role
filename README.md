@@ -54,7 +54,13 @@ Use in a playbook:
 
 ## Usage
 
-Look to the defaults properties file to see the possible configuration properties.
+Look to the [defaults](defaults/main.yml) properties file to see the possible configuration properties.
+
+Alert Manager configuration is separated in 4 blocks (see https://prometheus.io/docs/alerting/configuration/).
+First one, global configuration, is provided setting the properties for the role. The other ones: routes,
+inhibit roles and receivers must be provided in 3 separated files. By default this files must be stored in
+the path defined by this parameter `alertmanager_config_parts_path` and the filename headed with the position
+of the block in the final config file. See [this folder](tests/files/) for example.
 
 ## Testing
 

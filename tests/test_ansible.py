@@ -18,31 +18,31 @@ def test_alertmanager_user(User, Group, AnsibleDefaults):
 
 
 def test_alertmanager_conf(File, User, Group, AnsibleDefaults):
-    conf_dir = File(AnsibleDefaults["alertmanager_conf_dir"])
-    assert conf_dir.exists
-    assert conf_dir.is_directory
-    assert conf_dir.user == AnsibleDefaults["alertmanager_user"]
-    assert conf_dir.group == AnsibleDefaults["alertmanager_group"]
+    conf_path = File(AnsibleDefaults["alertmanager_conf_path"])
+    assert conf_path.exists
+    assert conf_path.is_directory
+    assert conf_path.user == AnsibleDefaults["alertmanager_user"]
+    assert conf_path.group == AnsibleDefaults["alertmanager_group"]
 
 
 def test_alertmanager_data(File, User, Group, AnsibleDefaults):
-    conf_dir = File(AnsibleDefaults["alertmanager_data_dir"])
-    assert conf_dir.exists
-    assert conf_dir.is_directory
-    assert conf_dir.user == AnsibleDefaults["alertmanager_user"]
-    assert conf_dir.group == AnsibleDefaults["alertmanager_group"]
+    conf_path = File(AnsibleDefaults["alertmanager_data_path"])
+    assert conf_path.exists
+    assert conf_path.is_directory
+    assert conf_path.user == AnsibleDefaults["alertmanager_user"]
+    assert conf_path.group == AnsibleDefaults["alertmanager_group"]
 
 
 def test_alertmanager_log(File, User, Group, AnsibleDefaults):
-    conf_dir = File(AnsibleDefaults["alertmanager_log_dir"])
-    assert conf_dir.exists
-    assert conf_dir.is_directory
-    assert conf_dir.user == AnsibleDefaults["alertmanager_user"]
-    assert conf_dir.group == AnsibleDefaults["alertmanager_group"]
+    conf_path = File(AnsibleDefaults["alertmanager_log_path"])
+    assert conf_path.exists
+    assert conf_path.is_directory
+    assert conf_path.user == AnsibleDefaults["alertmanager_user"]
+    assert conf_path.group == AnsibleDefaults["alertmanager_group"]
 
 
 def test_alertmanager_bin(File, Command, AnsibleDefaults):
-    am = File(AnsibleDefaults["alertmanager_bin_dir"] + "/alertmanager")
+    am = File(AnsibleDefaults["alertmanager_bin_path"] + "/alertmanager")
     am_link = File("/usr/bin/alertmanager")
     assert am.exists
     assert am.is_file
@@ -57,5 +57,9 @@ def test_alertmanager_bin(File, Command, AnsibleDefaults):
     assert "alertmanager, version " + AnsibleDefaults["alertmanager_version"] in am_version.stdout
 
 
-def test_alertmanager_service(File, Service, Socket, AnsibleDefaults):
+def test_alertmanager_service(File, Service, Socket, AnsibleVars):
+    port = AnsibleVars["alertmanager_port"]
     assert File("/lib/systemd/system/alertmanager.service").exists
+    assert Service("alertmanager").is_enabled
+    assert Service("alertmanager").is_running
+    assert Socket("tcp://:::" + str(port)).is_listening

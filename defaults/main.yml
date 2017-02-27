@@ -1,5 +1,15 @@
 ---
-alertmanager_version: 0.4.2
+## General
+
+alertmanager_version: 0.5.1
+alertmanager_release_system: linux-amd64
+
+# Set true to force the download and installation of the binary
+alertmanager_force_reinstall: false
+
+## Service options
+
+# Owner
 alertmanager_user: prometheus
 alertmanager_group: prometheus
 
@@ -8,31 +18,44 @@ alertmanager_service_enabled: True
 # current state: started, stopped
 alertmanager_service_state: started
 
+# Files & Paths
 alertmanager_log_file: "alertmanager.log"
+alertmanager_root_path: /opt/alertmanager
+alertmanager_bin_path: "{{ alertmanager_root_path }}/bin"
+alertmanager_conf_path: "/etc/alertmanager"
+alertmanager_templates_path: "{{ alertmanager_conf_path }}/conf.d"
+alertmanager_data_path: "{{ alertmanager_root_path }}/data"
+alertmanager_log_path: "/var/log/alertmanager"
+alertmanager_config_parts_path: "{{ playbook_dir }}/files/alertmanager/config"
+alertmanager_config_templates_path: "{{ playbook_dir }}/files/alertmanager/templates"
 
-alertmanager_root_dir: /opt/alertmanager
-alertmanager_bin_dir: "{{ alertmanager_root_dir }}/bin"
-alertmanager_conf_dir: "/etc/alertmanager/conf.d"
-alertmanager_data_dir: "{{ alertmanager_root_dir }}/data"
-alertmanager_log_dir: "/var/log/alertmanager"
+# Port & host
+alertmanager_port: 9093
+alertmanager_external_hostname: "localhost"
 
 alertmanager_service_options:
   - "config.file=/etc/alertmanager/alertmanager.yml"
-  - "storage.path={{ alertmanager_data_dir }}"
+  - "storage.path={{ alertmanager_data_path }}"
+  - "web.listen-address=:{{ alertmanager_port }}"
+  - "web.external-url=http://{{ alertmanager_external_hostname }}:{{ alertmanager_port }}/"
 
-alertmanager_global_config_parameters:  |+2
+## Global configuration parameters (https://prometheus.io/docs/alerting/configuration/)
 
-alertmanager_routes_config: |+2
-    group_by: ['alertname']
-    group_wait: 10s
-    group_interval: 10s
-    repeat_interval: 1h
-    receiver: 'webhook'
-alertmanager_inhibit_rules_config: |+2
+alertmanager_resolve_timeout: 5m
 
-alertmanager_receivers_config: |+2
-  - name: 'webhook'
-    webhook_configs:
-    - url: 'http://127.0.0.1:5001/'
-
-alertmanager_force_reinstall: false
+# SMTP
+alertmanager_smtp_from: ""
+alertmanager_smtp_smarthost: ""
+alertmanager_smtp_auth_username: ""
+alertmanager_smtp_auth_password: ""
+alertmanager_smtp_auth_secret: ""
+alertmanager_smtp_require_tls: "true"
+# Slack
+alertmanager_slack_api_url: ""
+#PagerDuty
+alertmanager_pagerduty_url: ""
+#OpsGenie
+alertmanager_opsgenie_api_host: ""
+# Hipchat
+alertmanager_hipchat_url: ""
+alertmanager_hipchat_auth_token: ""
