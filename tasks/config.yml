@@ -36,7 +36,7 @@
     - 2_routes_alertmanager
     - 3_inhibit_rules_alertmanager
     - 4_receivers_alertmanager
-  when: check_parts.files <= 1
+  when: check_parts.files|length < 2
 
 - name: ALERTMANAGER | Join config parts
   assemble:
