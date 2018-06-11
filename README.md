@@ -1,4 +1,4 @@
-![Logo](logo.gif)
+![Logo](https://raw.githubusercontent.com/idealista/prometheus_alertmanager-role/master/logo.gif)
 
 # Prometheus Alert Manager Ansible role
 
@@ -31,8 +31,7 @@ For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Vagrant
 Create or add to your roles dependency file (e.g requirements.yml):
 
 ```
-- src: http://github.com/idealista-tech/prometheus_alertmanager-role.git
-  scm: git
+- src: idealista.prometheus_alertmanager-role
   version: 1.0.0
   name: alertmanager
 ```
@@ -74,22 +73,22 @@ molecule test
 
 ## Versioning
 
-For the versions available, see the [tags on this repository](https://github.com/idealista-tech/prometheus_alertmanager-role/tags).
+For the versions available, see the [tags on this repository](https://github.com/idealista/prometheus_alertmanager-role/tags).
 
 Additionaly you can see what change in each version in the [CHANGELOG.md](CHANGELOG.md) file.
 
 ## Authors
 
-* **Idealista** - *Work with* - [idealista-tech](https://github.com/idealista-tech)
+* **Idealista** - *Work with* - [idealista](https://github.com/idealista)
 
-See also the list of [contributors](https://github.com/idealista-tech/prometheus_alertmanager-role/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/idealista/prometheus_alertmanager-role/contributors) who participated in this project.
 
 ## License
 
 ![Apache 2.0 Licence](https://img.shields.io/hexpm/l/plug.svg)
 
-This project is licensed under the [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) license - see the [LICENSE.txt](LICENSE.txt) file for details.
+This project is licensed under the [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0) license - see the [LICENSE](LICENSE) file for details.
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](.github/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.

@@ -1,5 +1,11 @@
 ---
 
-- hosts: all
+- hosts: alertmanager
   roles:
-    - role: prometheus_alertmanager-role
+    - prometheus_alertmanager-role
+  post_tasks:
+    - name: POST_TASKS | Check if Alertmanager port is up
+      wait_for:
+        port: "{{ alertmanager_port }}"
+        delay: 10
+        timeout: 30

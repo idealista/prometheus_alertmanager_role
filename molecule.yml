@@ -27,11 +27,11 @@ ansible:
 
 # configuration options for the internal call to vagrant
 vagrant:
-  # molecule's --platform option will look for these names
   raw_config_args:
     - "landrush.enabled = true"
     - "landrush.tld = ''"
     - "landrush.guest_redirect_dns = false"
+  # molecule's --platform option will look for these names
   platforms:
     - name: Debian
       box: debian/jessie64
@@ -46,7 +46,7 @@ vagrant:
   instances:
     - name: alertmanager
       ansible_groups:
-        - group01
+        - alertmanager
       interfaces:
         - network_name: private_network
           type: dhcp
