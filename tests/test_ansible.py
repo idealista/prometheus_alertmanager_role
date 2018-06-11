@@ -52,7 +52,7 @@ def test_alertmanager_bin(File, Command, AnsibleDefaults):
     assert am_link.is_file
     assert am_link.user == "root"
     assert am_link.group == "root"
-    am_version = Command("alertmanager -version")
+    am_version = Command("alertmanager --version")
     assert am_version.rc is 0
     assert "alertmanager, version " + AnsibleDefaults["alertmanager_version"] in am_version.stdout
 
