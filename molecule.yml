@@ -51,3 +51,25 @@ vagrant:
         - network_name: private_network
           type: dhcp
           auto_config: true
+
+docker:
+  containers:
+    - name: alertmanager
+      ansible_groups:
+        - alertmanager
+      image: geerlingguy/docker-debian9-ansible
+      image_version: latest
+      # All these parameters are needed for Docker testing with systemd
+      privileged: True
+      cap_add:
+        - SYS_ADMIN
+      volume_mounts:
+        - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+      command: '/lib/systemd/systemd'
+
+# verifier configuration
+verifier:
+  name: testinfra
+  options:
+    connection: ansible
+    ansible-inventory: .molecule/ansible_inventory
