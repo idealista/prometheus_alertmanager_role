@@ -5,7 +5,7 @@ After=network-online.target
 
 [Service]
 Restart=on-failure
-ExecStart=/bin/sh -c "alertmanager {% for option in alertmanager_service_options %}-{{ option }} {% endfor %}> {{ alertmanager_log_path }}/{{ alertmanager_log_file }} 2>&1"
+ExecStart=/bin/sh -c "alertmanager {% for option in alertmanager_service_options %}--{{ option }} {% endfor %}> {{ alertmanager_log_path }}/{{ alertmanager_log_file }} 2>&1"
 User={{ alertmanager_user }}
 ExecReload=/bin/kill -HUP $MAINPID
 KillSignal=SIGTERM
