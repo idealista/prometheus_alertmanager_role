@@ -1,7 +1,7 @@
 ---
 ## General
 
-alertmanager_version: 0.5.1
+alertmanager_version: 0.14.0
 alertmanager_release_system: linux-amd64
 
 # Set true to force the download and installation of the binary
