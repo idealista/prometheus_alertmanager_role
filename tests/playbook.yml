@@ -4,8 +4,6 @@
   roles:
     - prometheus_alertmanager-role
   post_tasks:
-    - name: POST_TASKS | Check if Alertmanager port is up
-      wait_for:
-        port: "{{ alertmanager_port }}"
-        delay: 10
-        timeout: 30
+    - name: POST_TASKS | Install packages for testing
+      apt:
+        name: net-tools

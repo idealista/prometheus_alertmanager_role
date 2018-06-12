@@ -6,11 +6,6 @@ def AnsibleDefaults(Ansible):
     return Ansible("include_vars", "defaults/main.yml")["ansible_facts"]
 
 
-@pytest.fixture()
-def AnsibleVars(Ansible):
-    return Ansible("include_vars", "tests/group_vars/group01.yml")["ansible_facts"]
-
-
 def test_alertmanager_user(User, Group, AnsibleDefaults):
     assert User(AnsibleDefaults["alertmanager_user"]).exists
     assert Group(AnsibleDefaults["alertmanager_group"]).exists
@@ -57,9 +52,8 @@ def test_alertmanager_bin(File, Command, AnsibleDefaults):
     assert "alertmanager, version " + AnsibleDefaults["alertmanager_version"] in am_version.stdout
 
 
-def test_alertmanager_service(File, Service, Socket, AnsibleVars):
-    port = AnsibleVars["alertmanager_port"]
+def test_alertmanager_service(File, Service, Socket, AnsibleDefaults):
+    port = AnsibleDefaults["alertmanager_port"]
     assert File("/lib/systemd/system/alertmanager.service").exists
-    assert Service("alertmanager").is_enabled
     assert Service("alertmanager").is_running
     assert Socket("tcp://:::" + str(port)).is_listening
