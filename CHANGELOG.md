@@ -5,7 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ## [Unreleased](https://github.com/idealista/prometheus_alertmanager-role/tree/develop)
 ### Added
 - *Add .github folder* @jnogol
-- *[#5](https://github.com/idealista/prometheus_alertmanager-role-role/issues/5) Add TravisCI* @jnogol
+- *[#5](https://github.com/idealista/prometheus_alertmanager-role-role/issues/5) Add CircleCI* @jnogol
 
 ### Changed
 - *Update README.md* @jnogol
