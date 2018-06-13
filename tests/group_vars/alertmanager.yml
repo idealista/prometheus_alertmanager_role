@@ -1,3 +1,1 @@
 alertmanager_config_parts_path: "{{ playbook_dir }}/files"
-
-alertmanager_download_path: /alertmanager_download
