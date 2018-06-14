@@ -1,3 +1,1 @@
-alertmanager_port: 9090
-
 alertmanager_config_parts_path: "{{ playbook_dir }}/files"

@@ -1,5 +1,9 @@
 ---
 
-- hosts: all
+- hosts: alertmanager
   roles:
-    - role: prometheus_alertmanager-role
+    - prometheus_alertmanager-role
+  post_tasks:
+    - name: POST_TASKS | Install packages for testing
+      apt:
+        name: net-tools
