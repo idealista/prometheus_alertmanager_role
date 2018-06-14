@@ -18,7 +18,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 - *Extract download path to a variable* @jnogol
 
 ### Fixed
-- *[#4](https://github.com/idealista/prometheus_alertmanager-role-role/issues/4) Double hyphen for newest Alertmanager versions* @jnogol
+- *[#4](https://github.com/idealista/prometheus_alertmanager-role-role/issues/4) Double dash for newest Alertmanager versions* @jnogol
 
 ## [1.0.1](https://github.com/idealista/prometheus_alertmanager-role/tree/1.0.1) (2017-03-02)
 [Full Changelog](https://github.com/idealista/prometheus_alertmanager-role/compare/1.0.0...1.0.1)
