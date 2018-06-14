@@ -37,19 +37,19 @@
 - name: ALERTMANAGER | Download package
   get_url:
     url: "{{ alertmanager_url }}"
-    dest: /tmp
+    dest: "{{ alertmanager_download_path }}"
   when: 'alertmanager_force_reinstall or alertmanager_check|failed or "alertmanager, version {{ alertmanager_version }}" not in alertmanager_check.stderr'
 
 - name: ALERTMANAGER | Extract package
   unarchive:
     copy: no
-    src: "/tmp/{{ alertmanager_package }}"
-    dest: /tmp
+    src: "{{ alertmanager_download_path }}/{{ alertmanager_package }}"
+    dest: "{{ alertmanager_download_path }}"
   when: 'alertmanager_force_reinstall or alertmanager_check|failed or "alertmanager, version {{ alertmanager_version }}" not in alertmanager_check.stderr'
 
 - name: ALERTMANAGER | Copy binary
   copy:
-    src: "/tmp/{{ alertmanager_release_name }}/alertmanager"
+    src: "{{ alertmanager_download_path }}/{{ alertmanager_release_name }}/alertmanager"
     dest: "{{ alertmanager_bin_path }}/alertmanager"
     owner: "{{ alertmanager_user }}"
     group: "{{ alertmanager_group }}"

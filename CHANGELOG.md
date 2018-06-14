@@ -5,11 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ## [Unreleased](https://github.com/idealista/prometheus_alertmanager-role/tree/develop)
 ### Added
 - *Add .github folder* @jnogol
+- *[#5](https://github.com/idealista/prometheus_alertmanager-role-role/issues/5) Add CircleCI* @jnogol
 
 ### Changed
 - *Update README.md* @jnogol
 - *Update Alertmanager default version* @jnogol
 - *Use alertmanager group in Molecule tests* @jnogol
+- *Extract download path to a variable* @jnogol
 
 ### Fixed
 - *[#4](https://github.com/idealista/prometheus_alertmanager-role-role/issues/4) Double hyphen for newest Alertmanager versions* @jnogol
