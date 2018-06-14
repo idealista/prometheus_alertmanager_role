@@ -17,7 +17,7 @@ This ansible role installs an Alert Manager server in a debian environment. The 
 
 ## Getting Started
 
-These instructions will get you a copy of the role for your ansible playbook. Once launched, it will install an [Alert Manager](https://prometheus.io/docs/alerting/alertmanager/) server in a Debian system.
+These instructions will get you a copy of the role for your ansible playbook. Once launched, it will install an [Alert Manager](https://prometheus.io/docs/alerting/alertmanager/) server in a Debian system. The role is only compatible with Alert Manager versions greater than 0.13.0.
 
 ### Prerequisities
 
