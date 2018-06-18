@@ -47,16 +47,31 @@ alertmanager_resolve_timeout: 5m
 # SMTP
 alertmanager_smtp_from: ""
 alertmanager_smtp_smarthost: ""
+alertmanager_smtp_hello: ""
 alertmanager_smtp_auth_username: ""
 alertmanager_smtp_auth_password: ""
 alertmanager_smtp_auth_secret: ""
 alertmanager_smtp_require_tls: "true"
+
 # Slack
 alertmanager_slack_api_url: ""
+
+# VictorOps
+alertmanager_victorops_api_key: ""
+alertmanager_victorops_api_url: ""
+
 #PagerDuty
 alertmanager_pagerduty_url: ""
+
 #OpsGenie
-alertmanager_opsgenie_api_host: ""
+alertmanager_opsgenie_api_key: ""
+alertmanager_opsgenie_api_url: ""
+
 # Hipchat
-alertmanager_hipchat_url: ""
+alertmanager_hipchat_api_url: ""
 alertmanager_hipchat_auth_token: ""
+
+# Wechat
+alertmanager_wechat_api_url: ""
+alertmanager_wechat_api_secret: ""
+alertmanager_wechat_api_corp_id: ""
