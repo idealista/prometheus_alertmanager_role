@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/prometheus_alertmanager-role/tree/develop)
+### Changed
+- *[#12](https://github.com/idealista/prometheus_alertmanager-role-role/issues/12) Avoid log file truncation* @jnogol
 
 ## [2.0.1](https://github.com/idealista/prometheus_alertmanager-role/tree/2.0.1) (2018-06-18)
 [Full Changelog](https://github.com/idealista/prometheus_alertmanager-role/compare/1.0.1...2.0.1)
