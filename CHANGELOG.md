@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/prometheus_alertmanager-role/tree/develop)
 
+## [2.0.2](https://github.com/idealista/prometheus_alertmanager-role/tree/2.0.2) (2018-06-18)
+### Changed
+- *[#12](https://github.com/idealista/prometheus_alertmanager-role-role/issues/12) Avoid log file truncation* @jnogol
+
 ## [2.0.1](https://github.com/idealista/prometheus_alertmanager-role/tree/2.0.1) (2018-06-18)
 [Full Changelog](https://github.com/idealista/prometheus_alertmanager-role/compare/1.0.1...2.0.1)
 
