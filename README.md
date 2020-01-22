@@ -1,4 +1,4 @@
-![Logo](https://raw.githubusercontent.com/idealista/prometheus_alertmanager-role/master/logo.gif)
+![Logo](https://raw.githubusercontent.com/idealista/prometheus_alertmanager_role/master/logo.gif)
 
 [![Build Status](https://travis-ci.org/idealista/prometheus_alertmanager_role.png)](https://travis-ci.org/idealista/prometheus_alertmanager_role)
 
@@ -33,7 +33,7 @@ For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Docker]
 Create or add to your roles dependency file (e.g requirements.yml):
 
 ```
-- src: idealista.prometheus_alertmanager-role
+- src: idealista.prometheus_alertmanager_role
   version: 2.1.0
   name: alertmanager
 ```
@@ -78,7 +78,7 @@ molecule test
 
 ## Versioning
 
-For the versions available, see the [tags on this repository](https://github.com/idealista/prometheus_alertmanager-role/tags).
+For the versions available, see the [tags on this repository](https://github.com/idealista/prometheus_alertmanager_role/tags).
 
 Additionaly you can see what change in each version in the [CHANGELOG.md](CHANGELOG.md) file.
 
@@ -86,7 +86,7 @@ Additionaly you can see what change in each version in the [CHANGELOG.md](CHANGE
 
 * **Idealista** - *Work with* - [idealista](https://github.com/idealista)
 
-See also the list of [contributors](https://github.com/idealista/prometheus_alertmanager-role/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/idealista/prometheus_alertmanager_role/contributors) who participated in this project.
 
 ## License
 
