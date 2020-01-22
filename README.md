@@ -1,5 +1,7 @@
 ![Logo](https://raw.githubusercontent.com/idealista/prometheus_alertmanager-role/master/logo.gif)
 
+[![Build Status](https://travis-ci.org/idealista/prometheus_alertmanager_role.png)](https://travis-ci.org/idealista/prometheus_alertmanager_role)
+
 # Prometheus Alert Manager Ansible role
 
 This ansible role installs an Alert Manager server in a debian environment. The server is installed using the sources.
@@ -21,10 +23,10 @@ These instructions will get you a copy of the role for your ansible playbook. On
 
 ### Prerequisities
 
-Ansible 2.2.0.0 version installed.
+Ansible 2.8.x.x version installed.
 Inventory destination should be a Debian environment.
 
-For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Vagrant](https://www.vagrantup.com/) as driver (with [landrush](https://github.com/vagrant-landrush/landrush) plugin) and [VirtualBox](https://www.virtualbox.org/) as provider.
+For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Docker](https://www.docker.com/) as driver. Pipenv 2018.11.26 and Python 3 recommended.
 
 ### Installing
 
@@ -32,7 +34,7 @@ Create or add to your roles dependency file (e.g requirements.yml):
 
 ```
 - src: idealista.prometheus_alertmanager-role
-  version: 1.0.0
+  version: 2.1.0
   name: alertmanager
 ```
 
@@ -64,12 +66,15 @@ of the block in the final config file. See [this folder](tests/files/) for examp
 ## Testing
 
 ```
+pipenv shell
+pipenv sync
 molecule test
 ```
 
 ## Built With
 
-![Ansible](https://img.shields.io/badge/ansible-2.2.0.0-green.svg)
+![Ansible](https://img.shields.io/badge/ansible-2.8.6.0-green.svg)
+![Molecule](https://img.shields.io/badge/molecule-2.22.0-green.svg)
 
 ## Versioning
 
