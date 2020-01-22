@@ -38,14 +38,14 @@
   get_url:
     url: "{{ alertmanager_url }}"
     dest: "{{ alertmanager_download_path }}"
-  when: 'alertmanager_force_reinstall or alertmanager_check|failed or "alertmanager, version {{ alertmanager_version }}" not in alertmanager_check.stderr'
+  when: alertmanager_force_reinstall or alertmanager_check is failed or "alertmanager, version {{ alertmanager_version }}" not in alertmanager_check.stderr
 
 - name: ALERTMANAGER | Extract package
   unarchive:
     copy: no
     src: "{{ alertmanager_download_path }}/{{ alertmanager_package }}"
     dest: "{{ alertmanager_download_path }}"
-  when: 'alertmanager_force_reinstall or alertmanager_check|failed or "alertmanager, version {{ alertmanager_version }}" not in alertmanager_check.stderr'
+  when: alertmanager_force_reinstall or alertmanager_check is failed or "alertmanager, version {{ alertmanager_version }}" not in alertmanager_check.stderr
 
 - name: ALERTMANAGER | Copy binary
   copy:
@@ -55,7 +55,7 @@
     group: "{{ alertmanager_group }}"
     remote_src: True
     mode: 0755
-  when: 'alertmanager_force_reinstall or alertmanager_check|failed or "alertmanager, version {{ alertmanager_version }}" not in alertmanager_check.stderr'
+  when: alertmanager_force_reinstall or alertmanager_check is failed or "alertmanager, version {{ alertmanager_version }}" not in alertmanager_check.stderr
   notify: restart alertmanager
 
 - name: ALERTMANAGER | Link binary
