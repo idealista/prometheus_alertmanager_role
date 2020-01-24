@@ -1,0 +1,46 @@
+group:
+  {{ alertmanager_group }}:
+    exists: true
+
+user:
+  {{ alertmanager_user }}:
+    exists: true
+    groups:
+      - {{ alertmanager_group }}
+
+file:
+  {{ alertmanager_conf_path }}:
+    exists: true
+    filetype: directory
+  {{ alertmanager_root_path }}:
+    owner: {{ alertmanager_user }}
+    group: {{ alertmanager_group }}
+    exists: true
+    filetype: directory
+  {{ alertmanager_data_path }}:
+    owner: {{ alertmanager_user }}
+    group: {{ alertmanager_group }}
+    exists: true
+    filetype: directory
+  {{ alertmanager_bin_path }}:
+    owner: {{ alertmanager_user }}
+    group: {{ alertmanager_group }}
+    exists: true
+    filetype: directory
+  {{ alertmanager_log_path }}:
+    owner: {{ alertmanager_user }}
+    group: {{ alertmanager_group }}
+    exists: true
+    filetype: directory
+  /lib/systemd/system/alertmanager.service:
+    exists: true
+
+service:
+  alertmanager:
+    enabled: true
+    running: true
+
+http:
+  http://{{ ansible_nodename }}:{{ alertmanager_port }}:
+    status: 200
+
