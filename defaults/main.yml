@@ -60,10 +60,10 @@ alertmanager_slack_api_url: ""
 alertmanager_victorops_api_key: ""
 alertmanager_victorops_api_url: ""
 
-#PagerDuty
+# PagerDuty
 alertmanager_pagerduty_url: ""
 
-#OpsGenie
+# OpsGenie
 alertmanager_opsgenie_api_key: ""
 alertmanager_opsgenie_api_url: ""
 
