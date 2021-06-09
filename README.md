@@ -23,7 +23,7 @@ These instructions will get you a copy of the role for your ansible playbook. On
 
 ### Prerequisities
 
-Ansible 2.9.9 version installed.
+Ansible 2.9.x.x version installed.
 Inventory destination should be a Debian environment.
 
 For testing purposes, [Molecule](https://molecule.readthedocs.io/) with [Docker](https://www.docker.com/) as driver. Pipenv 2018.11.26 and Python 3 recommended.
@@ -73,8 +73,8 @@ molecule test
 
 ## Built With
 
-![Ansible](https://img.shields.io/badge/ansible-2.9.9-green.svg)
-![Molecule](https://img.shields.io/badge/molecule-3.0.4-green.svg)
+![Ansible](https://img.shields.io/badge/ansible-2.9.21-green.svg)
+![Molecule](https://img.shields.io/badge/molecule-3.0.8-green.svg)
 
 ## Versioning
 
