@@ -11,7 +11,7 @@
     name: "{{ alertmanager_user }}"
     group: "{{ alertmanager_group }}"
     system: yes
-    shell: /usr/sbin/nologin
+    shell: "{{ alertmanager_user_shell }}"
     createhome: no
 
 - name: ALERTMANAGER | Ensure skeleton paths
