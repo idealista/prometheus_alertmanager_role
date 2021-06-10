@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/prometheus_alertmanager_role/tree/develop)
 
+### Added
+- [#27](https://github.com/idealista/prometheus_alertmanager_role/issues/27) *[BUG] Change prometheus user shell path in /etc/passwd* @marcelogalmor
+
 ## [2.1.0](https://github.com/idealista/prometheus_alertmanager_role/tree/2.1.0) (2020-01-22)
 [Full Changelog](https://github.com/idealista/prometheus_alertmanager_role/compare/2.0.2...2.1.0)
 ### Changed
