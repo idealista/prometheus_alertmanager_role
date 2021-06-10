@@ -12,6 +12,7 @@ alertmanager_force_reinstall: false
 # Owner
 alertmanager_user: prometheus
 alertmanager_group: prometheus
+alertmanager_user_shell: /usr/sbin/nologin
 
 # start on boot
 alertmanager_service_enabled: True
