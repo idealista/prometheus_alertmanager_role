@@ -3,7 +3,7 @@
 - name: ALERTMANAGER | Copy server config
   template:
     src: "{{ item }}.j2"
-    dest: "{{alertmanager_conf_path}}/parts/{{ item }}"
+    dest: "{{ alertmanager_conf_path }}/parts/{{ item }}"
     owner: "{{ alertmanager_user }}"
     group: "{{ alertmanager_group }}"
     mode: 0640
@@ -16,7 +16,7 @@
 - name: ALERTMANAGER | Copy server config (other parts)
   copy:
     src: "{{ item }}"
-    dest: "{{alertmanager_conf_path}}/parts/{{ item | basename }}"
+    dest: "{{ alertmanager_conf_path }}/parts/{{ item | basename }}"
     owner: "{{ alertmanager_user }}"
     group: "{{ alertmanager_group }}"
     mode: 0640
@@ -25,13 +25,13 @@
 
 - name: ALERTMANAGER | Checking for parts...
   find:
-    paths: "{{alertmanager_conf_path}}/parts"
+    paths: "{{ alertmanager_conf_path }}/parts"
   register: check_parts
 
 - name: ALERTMANAGER | Copy default parts
   copy:
     src: "{{ item }}"
-    dest: "{{alertmanager_conf_path}}/parts/{{ item }}"
+    dest: "{{ alertmanager_conf_path }}/parts/{{ item }}"
     owner: "{{ alertmanager_user }}"
     group: "{{ alertmanager_group }}"
     mode: 0640
