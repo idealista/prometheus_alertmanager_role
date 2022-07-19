@@ -1,6 +1,6 @@
 ---
 
-- name: ALERTMANAGER | Copy server config (global)
+- name: ALERTMANAGER | Copy server config
   template:
     src: "{{ item }}.j2"
     dest: "{{alertmanager_conf_path}}/parts/{{ item }}"
@@ -8,7 +8,10 @@
     group: "{{ alertmanager_group }}"
     mode: 0640
   with_items:
-    - "1_global_alertmanager"
+    - 1_global_alertmanager
+    - 2_routes_alertmanager
+    - 3_inhibit_rules_alertmanager
+    - 4_receivers_alertmanager
 
 - name: ALERTMANAGER | Copy server config (other parts)
   copy:

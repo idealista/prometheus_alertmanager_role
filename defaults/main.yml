@@ -27,7 +27,6 @@ alertmanager_conf_path: "/etc/alertmanager"
 alertmanager_templates_path: "{{ alertmanager_conf_path }}/conf.d"
 alertmanager_data_path: "{{ alertmanager_root_path }}/data"
 alertmanager_log_path: "/var/log/alertmanager"
-alertmanager_config_parts_path: "{{ playbook_dir }}/files/alertmanager/config"
 alertmanager_config_templates_path: "{{ playbook_dir }}/files/alertmanager/templates"
 alertmanager_download_path: /tmp
 

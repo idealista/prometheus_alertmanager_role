@@ -1,0 +1,13 @@
+---
+
+exclude_paths:
+  - ./molecule
+  - ./.travis.yml
+  - ./.github
+parseable: true
+skip_list:
+  - '204'
+warn_list:
+  - 'fqcn-builtins'
+use_default_rules: true
+verbosity: 1

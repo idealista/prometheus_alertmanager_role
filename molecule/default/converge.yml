@@ -1,0 +1,5 @@
+---
+
+- hosts: alertmanager
+  roles:
+    - prometheus_alertmanager_role
