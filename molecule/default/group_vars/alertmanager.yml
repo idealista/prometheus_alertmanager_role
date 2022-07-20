@@ -1,6 +1,5 @@
 ---
 
-alertmanager_config_parts_path: "{{ playbook_dir }}/files"
 alertmanager_download_path: /usr/src
 
 alertmanager_user: prometheus

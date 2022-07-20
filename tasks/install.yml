@@ -19,7 +19,7 @@
     dest: "{{ item }}"
     owner: "{{ alertmanager_user }}"
     group: "{{ alertmanager_user }}"
-    mode: 0644
+    mode: 0755
     state: directory
   with_items:
     - "{{ alertmanager_root_path }}"

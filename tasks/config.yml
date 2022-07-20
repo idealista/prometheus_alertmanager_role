@@ -13,16 +13,6 @@
     - 3_inhibit_rules_alertmanager
     - 4_receivers_alertmanager
 
-- name: ALERTMANAGER | Copy server config (other parts)
-  copy:
-    src: "{{ item }}"
-    dest: "{{ alertmanager_conf_path }}/parts/{{ item | basename }}"
-    owner: "{{ alertmanager_user }}"
-    group: "{{ alertmanager_group }}"
-    mode: 0640
-  with_fileglob:
-    - "{{ alertmanager_config_parts_path }}/*"
-
 - name: ALERTMANAGER | Checking for parts...
   find:
     paths: "{{ alertmanager_conf_path }}/parts"
