@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a changelog](https://github.com/olivierlacan/keep-a-changelog).
 
 ## [Unreleased](https://github.com/idealista/prometheus_alertmanager_role/tree/develop)
+- *[#30](https://github.com/idealista/prometheus_alertmanager_role/issues/30) Templatizing all config files* @blalop
 
 ### Added
 - [#27](https://github.com/idealista/prometheus_alertmanager_role/issues/27) *[BUG] Change prometheus user shell path in /etc/passwd* @marcelogalmor
