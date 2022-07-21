@@ -25,7 +25,7 @@
     - "{{ alertmanager_root_path }}"
     - "{{ alertmanager_conf_path }}"
     - "{{ alertmanager_conf_path }}/parts"
-    - "{{ alertmanager_templates_path }}"
+    - "{{ alertmanager_notifications_templates_path }}"
     - "{{ alertmanager_bin_path }}"
     - "{{ alertmanager_log_path }}"
 
