@@ -1,6 +1,5 @@
 ---
 
-alertmanager_config_parts_path: "{{ playbook_dir }}/files"
 alertmanager_download_path: /usr/src
 
 alertmanager_user: prometheus
@@ -9,7 +8,7 @@ alertmanager_group: prometheus
 alertmanager_root_path: /opt/alertmanager
 alertmanager_bin_path: "{{ alertmanager_root_path }}/bin"
 alertmanager_conf_path: "/etc/alertmanager"
-alertmanager_templates_path: "{{ alertmanager_conf_path }}/conf.d"
+alertmanager_notifications_templates_path: "{{ alertmanager_conf_path }}/conf.d"
 alertmanager_data_path: "{{ alertmanager_root_path }}/data"
 alertmanager_log_path: "/var/log/alertmanager"
 

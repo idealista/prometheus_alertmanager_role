@@ -1,42 +1,27 @@
 ---
 
-- name: ALERTMANAGER | Copy server config (global)
+- name: ALERTMANAGER | Copy main server config
   template:
-    src: "{{ item }}.j2"
-    dest: "{{alertmanager_conf_path}}/parts/{{ item }}"
+    src: 1_global_alertmanager.j2
+    dest: "{{ alertmanager_conf_path }}/parts/1_global_alertmanager"
     owner: "{{ alertmanager_user }}"
     group: "{{ alertmanager_group }}"
     mode: 0640
-  with_items:
-    - "1_global_alertmanager"
 
-- name: ALERTMANAGER | Copy server config (other parts)
-  copy:
+- name: ALERTMANAGER | Copy server config
+  template:
     src: "{{ item }}"
-    dest: "{{alertmanager_conf_path}}/parts/{{ item | basename }}"
+    dest: "{{ alertmanager_conf_path }}/parts/{{ item | basename }}"
     owner: "{{ alertmanager_user }}"
     group: "{{ alertmanager_group }}"
     mode: 0640
   with_fileglob:
-    - "{{ alertmanager_config_parts_path }}/*"
+    - "{{ alertmanager_config_parts_templates_path }}/*.j2"
 
 - name: ALERTMANAGER | Checking for parts...
   find:
-    paths: "{{alertmanager_conf_path}}/parts"
+    paths: "{{ alertmanager_conf_path }}/parts"
   register: check_parts
-
-- name: ALERTMANAGER | Copy default parts
-  copy:
-    src: "{{ item }}"
-    dest: "{{alertmanager_conf_path}}/parts/{{ item }}"
-    owner: "{{ alertmanager_user }}"
-    group: "{{ alertmanager_group }}"
-    mode: 0640
-  with_items:
-    - 2_routes_alertmanager
-    - 3_inhibit_rules_alertmanager
-    - 4_receivers_alertmanager
-  when: check_parts.files|length < 2
 
 - name: ALERTMANAGER | Join config parts
   assemble:
@@ -50,15 +35,15 @@
   notify:
     - restart alertmanager
 
-- name: ALERTMANAGER | Copy templates
+- name: ALERTMANAGER | Copy notification templates
   copy:
     src: "{{ item }}"
-    dest: "{{ alertmanager_templates_path }}/{{ item }}"
+    dest: "{{ alertmanager_notifications_templates_path }}/{{ item }}"
     owner: "{{ alertmanager_user }}"
     group: "{{ alertmanager_group }}"
     mode: 0640
   with_fileglob:
-    - "{{ alertmanager_config_templates_path }}/*"
+    - "{{ alertmanager_config_notifications_templates_path }}/*"
   notify:
     - reload alertmanager
 
@@ -69,3 +54,4 @@
     mode: 0644
     owner: root
     group: root
+  when: alertmanager_logrotate_enabled

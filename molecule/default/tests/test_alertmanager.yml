@@ -1,3 +1,5 @@
+---
+
 group:
   {{ alertmanager_group }}:
     exists: true
@@ -43,4 +45,3 @@ service:
 http:
   http://{{ ansible_nodename }}:{{ alertmanager_port }}:
     status: 200
-
