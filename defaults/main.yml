@@ -24,12 +24,13 @@ alertmanager_log_file: "alertmanager.log"
 alertmanager_root_path: /opt/alertmanager
 alertmanager_bin_path: "{{ alertmanager_root_path }}/bin"
 alertmanager_conf_path: "/etc/alertmanager"
-alertmanager_templates_path: "{{ alertmanager_conf_path }}/conf.d"
+alertmanager_config_parts_templates_path: "{{ playbook_dir }}/templates/alertmanager"
+alertmanager_notifications_templates_path: "{{ alertmanager_conf_path }}/conf.d"
 alertmanager_data_path: "{{ alertmanager_root_path }}/data"
 alertmanager_log_path: "/var/log/alertmanager"
-alertmanager_config_parts_path: "{{ playbook_dir }}/files/alertmanager/config"
-alertmanager_config_templates_path: "{{ playbook_dir }}/files/alertmanager/templates"
+alertmanager_config_notifications_templates_path: "{{ playbook_dir }}/files/alertmanager/templates"
 alertmanager_download_path: /tmp
+alertmanager_logrotate_enabled: true
 
 # Port & host
 alertmanager_port: 9093

@@ -19,12 +19,13 @@
     dest: "{{ item }}"
     owner: "{{ alertmanager_user }}"
     group: "{{ alertmanager_user }}"
+    mode: 0755
     state: directory
   with_items:
     - "{{ alertmanager_root_path }}"
     - "{{ alertmanager_conf_path }}"
     - "{{ alertmanager_conf_path }}/parts"
-    - "{{ alertmanager_templates_path }}"
+    - "{{ alertmanager_notifications_templates_path }}"
     - "{{ alertmanager_bin_path }}"
     - "{{ alertmanager_log_path }}"
 
@@ -38,6 +39,7 @@
   get_url:
     url: "{{ alertmanager_url }}"
     dest: "{{ alertmanager_download_path }}"
+    mode: 0644
   when: alertmanager_force_reinstall or alertmanager_check is failed or "alertmanager, version {{ alertmanager_version }}" not in alertmanager_check.stderr
 
 - name: ALERTMANAGER | Extract package

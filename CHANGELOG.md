@@ -4,6 +4,17 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/prometheus_alertmanager_role/tree/develop)
 
+## [3.0.0](https://github.com/idealista/prometheus_alertmanager_role/tree/3.0.0) (2022-07-21)
+### Added
+- *[#30](https://github.com/idealista/prometheus_alertmanager_role/issues/30) Templatizing all config files* @blalop
+- *[#30](https://github.com/idealista/prometheus_alertmanager_role/issues/30) Debian 11 support* @blalop
+- *[#30](https://github.com/idealista/prometheus_alertmanager_role/issues/30) Configurable logrotate* @blalop
+
+### Removed
+- *[#30](https://github.com/idealista/prometheus_alertmanager_role/issues/30) Debian 9 support* @blalop
+
+## [2.1.1](https://github.com/idealista/prometheus_alertmanager_role/tree/2.1.1) (2021-06-10)
+
 ### Added
 - [#27](https://github.com/idealista/prometheus_alertmanager_role/issues/27) *[BUG] Change prometheus user shell path in /etc/passwd* @marcelogalmor
 

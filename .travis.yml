@@ -1,7 +1,7 @@
 ---
 dist: xenial
 language: python
-python: "3.7"
+python: "3.9"
 os: linux
 services:
   - docker
@@ -10,7 +10,7 @@ install:
   - pipenv sync
 env:
   jobs:
-    - DOCKER_BASE_IMAGE=debian:stretch-slim
+    - DOCKER_BASE_IMAGE=debian:bullseye-slim
     - DOCKER_BASE_IMAGE=debian:buster-slim
 script:
   - export DOCKER_BASE_IMAGE=${DOCKER_BASE_IMAGE}
