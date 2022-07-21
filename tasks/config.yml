@@ -16,7 +16,7 @@
     group: "{{ alertmanager_group }}"
     mode: 0640
   with_fileglob:
-    - "{{ alertmanager_config_templates_path }}/*.j2"
+    - "{{ alertmanager_config_parts_templates_path }}/*.j2"
 
 - name: ALERTMANAGER | Checking for parts...
   find:

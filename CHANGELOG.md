@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 ### Added
 - *[#30](https://github.com/idealista/prometheus_alertmanager_role/issues/30) Templatizing all config files* @blalop
 - *[#30](https://github.com/idealista/prometheus_alertmanager_role/issues/30) Debian 11 support* @blalop
+- *[#30](https://github.com/idealista/prometheus_alertmanager_role/issues/30) Configurable logrotate* @blalop
+
 ### Removed
 - *[#30](https://github.com/idealista/prometheus_alertmanager_role/issues/30) Debian 9 support* @blalop
 
