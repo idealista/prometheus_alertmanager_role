@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a ch
 
 ## [Unreleased](https://github.com/idealista/prometheus_alertmanager_role/tree/develop)
 
+## [3.0.1](https://github.com/idealista/prometheus_alertmanager_role/tree/3.0.1) (2022-07-26)
+### Fixed
+- *[#33](https://github.com/idealista/prometheus_alertmanager_role/issues/33) Remove jinja extension from the config parts* @blalop
+
 ## [3.0.0](https://github.com/idealista/prometheus_alertmanager_role/tree/3.0.0) (2022-07-21)
 ### Added
 - *[#30](https://github.com/idealista/prometheus_alertmanager_role/issues/30) Templatizing all config files* @blalop
