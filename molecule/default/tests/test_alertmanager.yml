@@ -34,6 +34,12 @@ file:
     group: {{ alertmanager_group }}
     exists: true
     filetype: directory
+  {{ alertmanager_conf_path }}/parts/2_routes_alertmanager:
+    exists: true
+  {{ alertmanager_conf_path }}/parts/3_inhibit_rules_alertmanager:
+    exists: true
+  {{ alertmanager_conf_path }}/parts/4_receivers_alertmanager:
+    exists: true
   /lib/systemd/system/alertmanager.service:
     exists: true
 

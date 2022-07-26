@@ -11,7 +11,7 @@
 - name: ALERTMANAGER | Copy server config
   template:
     src: "{{ item }}"
-    dest: "{{ alertmanager_conf_path }}/parts/{{ item | basename }}"
+    dest: "{{ alertmanager_conf_path }}/parts/{{ item | basename | splitext | first }}"
     owner: "{{ alertmanager_user }}"
     group: "{{ alertmanager_group }}"
     mode: 0640
